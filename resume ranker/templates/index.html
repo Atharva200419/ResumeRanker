@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Ranker</title>
+</head>
+<body>
+    <h2>Resume Ranking System (ML + Flask)</h2>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label>Paste Job Description:</label><br>
+        <textarea name="jd" rows="6" cols="60" required></textarea><br><br>
+        <label>Select Resume PDFs:</label><br>
+        <input type="file" name="resumes" multiple required><br><br>
+        <input type="submit" value="Rank Resumes">
+    </form>
+
+    {% if results %}
+        <h3>Ranked Resumes:</h3>
+        <ol>
+        {% for name, score in results %}
+            <li>{{ name }} — Score: {{ "%.2f"|format(score * 100) }}</li>
+        {% endfor %}
+        </ol>
+    {% endif %}
+</body>
+</html>
